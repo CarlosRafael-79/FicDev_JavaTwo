@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Listagem de Turmas</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<style>
+	th, td {
+		text-align: center;
+	}
+</style>
+
+<body>
+	<div class="container">
+		<h2>Listagem de Turmas</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome da Turma</th>
+					<th>Número de Alunos</th>
+					<th>Atualizar</th>
+					<th>Remover</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="turma: ${turmas}">
+					<td th:text="${turma.id}"></td>
+					<td th:text="${turma.nome}"></td>
+					<td th:text="${turma.numAlunos}"></td>
+					<td><a th:href="@{/turma(id=${turma.id}, nome=${turma.nome}, numAlunos=${turma.numAlunos})}" class="btn btn-primary">Atualizar</a></td>
+					<td><a th:href="@{/turma/delete(id=${turma.id})}" class="btn btn-danger">Deletar</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div><a th:href="@{/turma}" class="btn btn-success">Cadastrar</a></div>
+	</div>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

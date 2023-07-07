@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Turma</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro de Turma</h2>
+        <form action="#" th:action="@{/turma}" th:object="${turma}" method="post">
+            <div class="alert alert-success alert-dismissible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+				<button type="button" class="close" data-dismiss="alert"></button>
+				<span th:text="${mensagem}">Salvo com sucesso!</span>
+			</div>
+			<div class="form-group">
+				<input type="hidden" th:field="*{id}" class="form-control" id="id">
+			</div>
+			<div class="form-group">
+				<label for="nome">Nome da Turma</label>
+				<input type="text" th:field="*{nome}" class="form-control" id="nome">
+			</div>
+			<div class="form-group">
+				<label for="numAlunos">Número de Alunos</label>
+				<input type="number" th:field="*{numAlunos}" class="form-control" id="numAlunos">
+			</div>
+			<div>
+				<button type="submit" class="btn btn-success">Cadastrar</button>
+				<a th:href="@{/turma/lista}" class="btn btn-primary">Voltar</a>
+			</div>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
