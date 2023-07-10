@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listagem de Turmas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Listagem de Nutrcionista</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Nutricionista</th>
+                    <th>CRN</th>
+                    <th>UF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nutricionista : ${nutricionistas}">
+                    <td th:text="${nutricionista.id}"></td>
+                    <td th:text="${nutricionista.nome}"></td>
+                    <td th:text="${nutricionista.crn}"></td>
+                    <td th:text="${nutricionista.uf}"></td>
+                    <td>
+						<a  th:href="@{/nutricionista/remover/{id}(id=${nutricionista.id})}" th:method="delete" class="btn btn-primary">
+							<i class="fas fa-user-times ml-2"></i>Deletar</i>
+						</a>
+					</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
