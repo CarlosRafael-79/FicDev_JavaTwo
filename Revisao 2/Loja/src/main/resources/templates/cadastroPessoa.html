@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Livros</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro de Pessoa</h2>
+        <form action="#" th:action="@{/pessoa/cadastrar}" th:object="${pessoa}" method="post">
+            <div class="alert alert-success alert-dismissible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+				<button type="button" class="close" data-dismiss="alert"></button>
+				<span th:text="${mensagem}">Salvo com sucesso!</span>
+			</div>
+			<div class="form-group">
+				<input type="hidden" th:field="*{id}" class="form-control" id="id">
+			</div>
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input type="text" th:field="*{nome}" class="form-control" id="nome">
+			</div>
+			
+			<div class="form-group">
+				<label for="idade">Ano de Publicação</label>
+				<input type="number" th:field="*{idade}" class="form-control" id="Idade">
+			</div>
+			<div class="mb-3 row">
+				<div class="col-12 d-grid">
+					<button type="submit" class="mt-4 btn btn-primary">Cadastrar</button>
+					<a th:href="@{/}" class="mt-4 btn btn-primary">Voltar</a>
+				</div>
+			</div>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
