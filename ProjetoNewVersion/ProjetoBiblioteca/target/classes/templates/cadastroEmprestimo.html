@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Emprestimo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro de Emprestimo</h2>
+        <form action="#" th:action="@{/emprestimo/view/cadastrar}" th:object="${emprestimo}" method="post">
+            <div class="alert alert-success alert-dismissible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+				<button type="button" class="close" data-dismiss="alert"></button>
+				<span th:text="${mensagem}">Salvo com sucesso!</span>
+			</div>
+			<div class="form-group">
+				<input type="hidden" th:field="*{id}" class="form-control" id="id">
+			</div>
+			
+			<div class="mb-3 row">
+				<div class="col-12">					
+					<label for="livro" class="form-label">Livros disponiveis</label>
+					<input type="hidden" th:if="${isUpdate}" th:field="*{livro}" th:value="${emprestimo.livro} != null ? ${emprestimo.livro.id}" />
+					<select 
+					class="form-control" 
+					id="livro" 
+					th:disabled="${isUpdate}"
+					th:value="${emprestimo.livro} != null ? ${emprestimo.livro.id}"
+					th:field="*{livro}">
+					  <option
+							  th:each="livro : ${livros}"
+							  th:value="${livro.id}"
+							  th:text="${livro.titulo}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="mb-3 row">
+				<div class="col-12">					
+					<label for="usuario" class="form-label">Usuarios disponiveis</label>
+					<input type="hidden" th:if="${isUpdate}" th:field="*{usuario}" th:value="${emprestimo.usuario} != null ? ${emprestimo.usuario.id}" />
+					<select 
+					class="form-control" 
+					id="usuario" 
+					th:disabled="${isUpdate}"
+					th:value="${emprestimo.usuario} != null ? ${emprestimo.usuario.id}"
+					th:field="*{usuario}">
+					  <option
+							  th:each="usuario : ${usuarios}"
+							  th:value="${usuario.id}"
+							  th:text="${usuario.nome}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="dataEmprestimo">Data de Emprestimo</label>
+				<input type="date" th:field="*{dataEmprestimo}" class="form-control" id="dataEmprestimo">
+			</div>
+			<div class="form-group">
+				<label for="dataPrevistaDevolucao">Data Prevista para Devolução</label>
+				<input type="date" th:field="*{dataPrevistaDevolucao}" class="form-control" id="dataPrevistaDevolucao">
+			</div>
+			
+			<div class="form-group">
+				<label for="dataRealDevolucao">Data Real de Devolução</label>
+				<input type="date" th:field="*{dataRealDevolucao}" class="form-control" id="dataRealDevolucao">
+			</div>
+			
+			
+			
+			<div class="mb-3 row">
+				<div class="col-12 d-grid">
+					<button type="submit" class="mt-4 btn btn-primary">Cadastrar</button>
+					<a th:href="@{/}" class="mt-4 btn btn-primary">Voltar</a>
+				</div>
+			</div>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
